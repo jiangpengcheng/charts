@@ -114,7 +114,9 @@ data:
   {{- if .Values.auth.authorization.enabled }}
   authorizationEnabled: "true"
   superUserRoles: {{ .Values.auth.superUsers.broker }},{{ .Values.auth.superUsers.proxy }},{{ .Values.auth.superUsers.websocket }},{{ .Values.auth.superUsers.client }},{{ .Values.auth.superUsers.pulsar_manager }}
-  proxyRoles: {{ ternary .Values.auth.superUsers.proxy "" .Values.auth.proxyRoles.enabled }}
+  {{- if .Values.auth.proxyRoles.enabled }}
+  proxyRoles: {{ ternary .Values.auth.superUsers.proxy }}
+  {{- end }}
   {{- end }}
   {{- if and (eq .Values.auth.authentication.provider "jwt") (not .Values.auth.vault.enabled) }}
   # token authentication configuration
