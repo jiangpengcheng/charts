@@ -281,6 +281,8 @@ auth:
   # Enable vault based authentication
   vault:
     enabled: false
+  proxyRoles:
+    enabled: true
 ######################################################################
 # External dependencies
 ######################################################################
